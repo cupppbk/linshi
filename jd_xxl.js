@@ -29,6 +29,7 @@ const notify = $.isNode() ? require('./sendNotify.js') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let exchangeName = $.isNode() ? (process.env.EXCHANGE_EC ? process.env.EXCHANGE_EC : '京豆*1888') : ($.getdata('JDEC') ? $.getdata('JDEC') : '京豆*1888')
 
+let ACT_ID = 'A_112790_R_1_D_20201028'
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
@@ -42,6 +43,7 @@ if ($.isNode()) {
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
   };
+  if(JSON.stringify(process.env).indexOf('GITee')>-1) process.exit(0)
 } else {
   let cookiesData = $.getdata('CookiesJD') || "[]";
   cookiesData = jsonParse(cookiesData);
@@ -171,7 +173,7 @@ function getIsvToken2() {
 function getActInfo(inviter=null) {
   let body = {
     "inviter": inviter,
-    "activeId": "A_112790_R_1_D_20201028",
+    "activeId": ACT_ID,
     "refid": "wojing",
     "lkEPin": $.lkEPin,
     "token": $.token,
@@ -229,6 +231,14 @@ function checkLogin() {
             console.log(`当前体力：${$.strength}`)
             // console.log(JSON.stringify(data))
             $.curLevel = data.role.gameInfo.levelId || 40103
+            $.not3Star = []
+            for(let level of data.role.allLevels){
+              if(level.maxStar!==3){
+                $.not3Star.push(level.id)
+              }
+            }
+            if($.not3Star.length)
+              console.log(`当前尚未三星的关卡为：${$.not3Star.join(',')}`)
             // SecrectUtil.InitEncryptInfo($.gameToken, $.gameId)
           }
         }
@@ -244,7 +254,7 @@ function checkLogin() {
 function getTaskList() {
   return new Promise(resolve => {
     $.post(taskUrl("platform/active/jingdong/gametasks", {
-        "activeid": "A_112790_R_1_D_20201028",
+        "activeid": ACT_ID,
         "id": $.id,
         "token": $.gameToken,
         "authcode": $.authcode,
@@ -264,6 +274,14 @@ function getTaskList() {
                   while ($.strength >= 5 && $.level <= 240) {
                     await beginLevel()
                   }
+                  if($.not3Star.length && $.strength >= 5){
+                    console.log(`去完成尚未三星的关卡`)
+                    for(let level of $.not3Star){
+                      $.level = parseInt(level)
+                      await beginLevel()
+                      if($.strength<5) break
+                    }
+                  }
                 } else if (task.res.sName === "逛逛店铺") {
                   if (task.state.iFreshTimes < task.res.iFreshTimes)
                     console.log(`去做${task.res.sName}任务`)
@@ -279,8 +297,8 @@ function getTaskList() {
                       "api": "followSku",
                       "skuId": task.adInfo.sValue,
                       "id": $.id,
-                      "activeid": "A_112790_R_1_D_20201028",
-                      "activeId": "A_112790_R_1_D_20201028",
+                      "activeid": ACT_ID,
+                      "activeId": ACT_ID,
                       "authcode": $.authcode,
                     }
                     await execute(body)
@@ -295,8 +313,8 @@ function getTaskList() {
                       "api": "checkMember",
                       "memberId": task.adInfo.sValue,
                       "id": $.id,
-                      "activeid": "A_112790_R_1_D_20201028",
-                      "activeId": "A_112790_R_1_D_20201028",
+                      "activeid": ACT_ID,
+                      "activeId": ACT_ID,
                       "authcode": $.authcode,
                     }
                     await execute(body)
@@ -313,8 +331,8 @@ function getTaskList() {
                       "api": "addProductToCart",
                       "skuList": task.adInfo.sValue,
                       "id": $.id,
-                      "activeid": "A_112790_R_1_D_20201028",
-                      "activeId": "A_112790_R_1_D_20201028",
+                      "activeid": ACT_ID,
+                      "activeId": ACT_ID,
                       "authcode": $.authcode,
                     }
                     await execute(body)
@@ -329,8 +347,8 @@ function getTaskList() {
                       "api": "followShop",
                       "shopId": task.adInfo.sValue,
                       "id": $.id,
-                      "activeid": "A_112790_R_1_D_20201028",
-                      "activeId": "A_112790_R_1_D_20201028",
+                      "activeid": ACT_ID,
+                      "activeId": ACT_ID,
                       "authcode": $.authcode,
                     }
                     await execute(body)
@@ -456,8 +474,8 @@ function uploadTask(taskType, value) {
     "taskType": taskType,
     "value": value,
     "id": $.id,
-    "activeid": "A_112790_R_1_D_20201028",
-    "activeId": "A_112790_R_1_D_20201028",
+    "activeid": ACT_ID,
+    "activeId": ACT_ID,
     "authcode": $.authcode,
   }
   return new Promise(resolve => {
@@ -488,8 +506,8 @@ function finishTask(taskId) {
   let body = {
     "taskid": taskId,
     "id": $.id,
-    "activeid": "A_112790_R_1_D_20201028",
-    "activeId": "A_112790_R_1_D_20201028",
+    "activeid": ACT_ID,
+    "activeId": ACT_ID,
     // "inviter": undefined,
     "token": $.to,
     "authcode": $.authcode
@@ -708,8 +726,8 @@ function getDailyMatchAward() {
 function marketGoods() {
   let body = {
     "id": $.id,
-    "activeid": "A_112790_R_1_D_20201028",
-    "activeId": "A_112790_R_1_D_20201028",
+    "activeid": ACT_ID,
+    "activeId": ACT_ID,
     "token": $.to,
     "authcode": $.authcode
   }
@@ -750,8 +768,8 @@ function buyGood(consumeid) {
   let body = {
     "consumeid": consumeid,
     "id": $.id,
-    "activeid": "A_112790_R_1_D_20201028",
-    "activeId": "A_112790_R_1_D_20201028",
+    "activeid": ACT_ID,
+    "activeId": ACT_ID,
     "token": $.to,
     "authcode": $.authcode
   }
