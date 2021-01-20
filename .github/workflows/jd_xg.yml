@@ -34,7 +34,7 @@ jobs:
           npm install
       - name: '运行 【小鸽有礼】'
         run: |
-          node jd_xg.js.js
+          node jd_xg.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
