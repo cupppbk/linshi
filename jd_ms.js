@@ -18,7 +18,7 @@
 
 ================Loon==============
 [Script]
-cron "0 16 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_ms.js,tag=京东秒秒币
+cron "10 7 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_ms.js,tag=京东秒秒币
 
 ===============Surge=================
 京东秒秒币 = type=cron,cronexp="10 7 * * *",wake-system=1,timeout=200,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_ms.js
@@ -39,7 +39,7 @@ if ($.isNode()) {
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
   };
-  if(JSON.stringify(process.env).indexOf('GITHy')>-1) process.exit(0)
+  if(JSON.stringify(process.env).indexOf('GITHUB')>-1) process.exit(0)
 } else {
   let cookiesData = $.getdata('CookiesJD') || "[]";
   cookiesData = jsonParse(cookiesData);
@@ -255,7 +255,7 @@ function taskPostUrl(function_id, body = {}, extra = '', function_id2) {
   }
   return {
     url,
-    body: `functionId=${function_id}&body=${escape(JSON.stringify(body))}&client=wh5&clientVersion=9.3.2&${extra}`,
+    body: `functionId=${function_id}&body=${escape(JSON.stringify(body))}&client=wh5&clientVersion=1.0.0&${extra}`,
     headers: {
       "Cookie": cookie,
       "origin": "https://h5.m.jd.com",
