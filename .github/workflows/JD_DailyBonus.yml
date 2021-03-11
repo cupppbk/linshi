@@ -6,7 +6,7 @@ name: 京东多合一签到脚本
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 23 * * *' # 每天7点10分
+    - cron: '0 16 * * *' # 每天7点10分
   watch:
     types: started
   repository_dispatch:
