@@ -6,7 +6,7 @@ name: 摇一摇
 on:
   workflow_dispatch:
   schedule:
-    - cron: '50 * * * *'
+    - cron: '3 20 * * *'
   watch:
     types: started
   repository_dispatch:
