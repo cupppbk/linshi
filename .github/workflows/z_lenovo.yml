@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京东炸年兽小程序🧨
+name: 联想集卡活动
 
 on:
   workflow_dispatch:
@@ -32,9 +32,9 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【京东炸年兽小程序🧨】'
+      - name: '运行 【联想集卡活动】'
         run: |
-          node  jd_nian_wechat.js 
+          node  z_lenovo.js 
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
