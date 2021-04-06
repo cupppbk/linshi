@@ -6,7 +6,7 @@ name: 创维408下班全勤奖
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1,4,10 * * *'
+    - cron: '15 08 2-18 4 *'
   watch:
     types: started
   repository_dispatch:
