@@ -6,7 +6,7 @@ name: 关注有礼
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '57 15,12 * * *'
   watch:
     types: started
   repository_dispatch:
