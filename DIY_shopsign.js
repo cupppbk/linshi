@@ -1,24 +1,8 @@
 /*
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
-
-更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js
-============Quantumultx===============
-[task_local]
-#粉丝互动
-0 0 * * * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js, tag=粉丝互动,  enabled=true
-[rewrite_local]
-^https://lzkjdz\-isv\.isvjcloud\.com\/wxFansInterActionActivity\/activityContent url script-response-body https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_getFanslove.js
-================Loon==============
-[Script]
-cron "3 10 * * *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js,tag=粉丝互动
-===============Surge=================
-粉丝互动 = type=cron,cronexp="3 10 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js
-============小火箭=========
-粉丝互动 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js, cronexpr="3 10 * * *", timeout=3600, enable=true
+搬运cui521大佬脚本，请勿外传！！！
 */
-
-
-const $ = new Env('跑路·······');
+const $ = new Env('店铺签到');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -32,25 +16,26 @@ let vender=''
 let num=0
 let shopname=''
 const token=[
-  '835A3AC23A597842CC3548B7DFC12711',//3.12天添加7天2  3天100
-  '685DC403504085E7046C31642DE5352D',//3.15日添加1天20
-  'E81EE86C25A2FFC044926EB68710C7D7',//3.17日添加10天8 5天100
-  'F4965FF96007AB8E6D98DAEF64737C7A',//3.18日添加7天5  7天100
-  '4C51D5B54D1789DB106DC586DDACC909',//3.18日添加6天60
-  '62A0A46B61E63DE73D4FF603E39DFC5F',//3.22日添加3天2 20天5元红包 7份
-  '06E56EC13895AC5A3A4C16D325E1B589',//3.24日添加20天50京豆
-  '9F8C465FC251B1623B8FAF938FB274A2',//3.24日添加3-15天95京豆 100份
-  '4B8E163011DB0794578D64178E7C15F0',//3.24日添加3-15天75京豆 500份
-  'BFD7ADD288D6384CC02B11F5EA10077E',//3.24日添加15天50京豆🔥5000份
-  'D7A184D175171CC3DD95AC7C548E15F4',//3.25日添加7天30京豆
-  'C80E07E1DBF58E4724042E1F1519D107',//3.25日添加7-10天30京豆
-  '8575162A3824F0B9D2CC9E6522AF9BD4',//3.25日添加3-14天28京豆
-  'F938968D486552666F190CC52695D7CB',//3.25日添加3天10京豆
-  'DEDA78412250FFAB2067841CDBE1F4CC',//3.25日添加7天10京豆
-  'F9142824987E7E7B250CE4B6E7767C5C',//3.25日添加7天10京豆
-  '43C647838553A71F2A94B4D7701928C4',//3.25日5/7天5京豆
-  '535A7EB8982F9ABA393C5C8DBABDBC89',//3.25日5/7天5京豆
-  '989ED19D27DB7972C1BC05050E7B6DD1',//3.25日5/7天5京豆
+  
+  
+'1D2F4BD7D6F73DD7473B2ADF1E154BC6',//4.1日添加10天20
+'36302D901CC0D11C10DC1A003867A375',//4.1日添加1天1
+'43D8744137B24C95DDA15BB7AE0CDF6F',//4.1日添加7天10
+'6D3EB8AD23C186FC9C4C14A233A046D8',//4.5日添加2天2
+'8E7FDDEF3EA142242274818D594D9888',//4.5日添加3天1
+'6B3155EAF49DFD1731F4B03392EAF259',//4.6日添加3天5
+'81DB18205052BD19A97CF11D07F09A37',
+'8B46713D671C4D065AA0F8DA2B238412',
+'955FFE3E48E4F232C17FD2AA526CF692',
+'BFD7ADD288D6384CC02B11F5EA10077E',
+'ABF052F1E3109E265D7F848643CDE2CE',
+'E9231879E40D1243B1F081937D5EFF69',
+'2AE69BC9A5ED72C987D3E6E181527220',
+'F30425435F5A0149B7A30243B357E37E',
+'0096917499DCC16A2D1C41B6C7E4D882',
+'659CECA410B69E253141CE5A26AF4E53',
+
+
 ]
 //IOS等用户直接用NobyDa的jd cookie
 
@@ -202,7 +187,7 @@ function getActivityInfo(token,venderId) {
         "accept-encoding": "gzip, deflate",
         "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "cookie": cookie,
-        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16105853541009626903&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1001280291_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
+         "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16178634353215523301&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_2009753434_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
         "User-Agent": `Mozilla/5.0 (Linux; U; Android 10; zh-cn; MI 8 Build/QKQ1.190828.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3945.147 Mobile Safari/537.36 XiaoMi/MiuiBrowser/13.5.40`
       }
     }
@@ -245,7 +230,7 @@ function signCollectGift(token,venderId,activitytemp) {
         "accept-encoding": "gzip, deflate",
         "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "cookie": cookie,
-        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16105853541009626903&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1001280291_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
+        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16178634353215523301&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_2009753434_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
         "User-Agent": `Mozilla/5.0 (Linux; U; Android 10; zh-cn; MI 8 Build/QKQ1.190828.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3945.147 Mobile Safari/537.36 XiaoMi/MiuiBrowser/13.5.40`
       }
     }
@@ -335,7 +320,7 @@ function TotalBean() {
               $.isLogin = false; //cookie过期
               return
             }
-            $.nickName = data['base'].nickname;
+            $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
           } else {
             console.log(`京东服务器返回空数据`)
           }
