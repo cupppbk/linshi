@@ -6,7 +6,7 @@ name: 探秘无限星空
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '15 8 * * *'
   watch:
     types: started
   repository_dispatch:
