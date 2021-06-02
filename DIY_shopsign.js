@@ -1,24 +1,20 @@
 /*
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
-
-更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js
 ============Quantumultx===============
 [task_local]
-#粉丝互动
-0 0 * * * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js, tag=粉丝互动,  enabled=true
-[rewrite_local]
-^https://lzkjdz\-isv\.isvjcloud\.com\/wxFansInterActionActivity\/activityContent url script-response-body https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_getFanslove.js
-================Loon==============
+#店铺签到
+0 0 * * * https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.js, tag=店铺签到, enabled=true
+===========Loon============
 [Script]
-cron "3 10 * * *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js,tag=粉丝互动
-===============Surge=================
-粉丝互动 = type=cron,cronexp="3 10 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js
-============小火箭=========
-粉丝互动 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js, cronexpr="3 10 * * *", timeout=3600, enable=true
+cron "0 0 * * *" script-path=https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.js,tag=店铺签到
+============Surge=============
+店铺签到 = type=cron,cronexp="0 0 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.js
+===========小火箭========
+店铺签到 = type=cron,script-path=https://raw.githubusercontent.com/Misaka09982/AutoSignMachine/master/DIY_shopsign.jss, cronexpr="0 0 * * *", timeout=3600, enable=true
 */
 
 
-const $ = new Env('跑路·······');
+const $ = new Env('最后一次更新了明天换新脚本 token将从群内获取 不在的可以删掉了');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -32,17 +28,17 @@ let vender=''
 let num=0
 let shopname=''
 const token=[
- "1A5BE7E4CFC35C680AE3960B48FE0851",//7天50豆5.14 5000份7天5元红包 200份5.14
- "B098DF6C17F03C352F1C1B317867699A",//7天66京豆 100份5.14
- "EB1B18EF4CE3D6949A2A494C30EFB808",//每天5/5天50豆 100份5.14
- "1145B88683B3CD8BDA4FE73C80A6A59F",//7天50豆 1000份5.14
- "7748434FF2C60283F785ECEEC659DF89",//每天5/80豆5.15/100豆5.20
- "528843D9422F582C4140AC99E6EE53FA",//5天100豆5.15
- "B46693DBDACBFF26BB7CBF05D8DE5F57",//10天50豆5.16 100份
- "6E25CBDECF72199B46197E02AD4E9740",//28天5元5.20
- "1145B88683B3CD8BDA4FE73C80A6A59F",//7天100豆 100份5.15
- "DAA6B51C25AE4AFB3808144C0BC5C2D1",//7天100豆5.17
- "160FD7FBAC172C8E486C1C5AFFA3F546",//10天100京豆 100份5.11
+   "1A5BE7E4CFC35C680AE3960B48FE0851",//7天50豆5.14 5000份7天5元红包 200份5.14
+   "B098DF6C17F03C352F1C1B317867699A",//7天66京豆 100份5.14
+   "EB1B18EF4CE3D6949A2A494C30EFB808",//每天5/5天50豆 100份5.14
+   "1145B88683B3CD8BDA4FE73C80A6A59F",//7天50豆 1000份5.14
+   "7748434FF2C60283F785ECEEC659DF89",//每天5/80豆5.15/100豆5.20
+   "528843D9422F582C4140AC99E6EE53FA",//5天100豆5.15
+   "B46693DBDACBFF26BB7CBF05D8DE5F57",//10天50豆5.16 100份
+   "6E25CBDECF72199B46197E02AD4E9740",//28天5元5.20
+   "1145B88683B3CD8BDA4FE73C80A6A59F",//7天100豆 100份5.15
+   "DAA6B51C25AE4AFB3808144C0BC5C2D1",//7天100豆5.17
+   "160FD7FBAC172C8E486C1C5AFFA3F546",//10天100京豆 100份5.11
 ]
 //IOS等用户直接用NobyDa的jd cookie
 
