@@ -1,8 +1,24 @@
 /*
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
-搬运cui521大佬脚本，请勿外传！！！
+
+更新地址：https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js
+============Quantumultx===============
+[task_local]
+#粉丝互动
+0 0 * * * https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js, tag=粉丝互动,  enabled=true
+[rewrite_local]
+^https://lzkjdz\-isv\.isvjcloud\.com\/wxFansInterActionActivity\/activityContent url script-response-body https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_getFanslove.js
+================Loon==============
+[Script]
+cron "3 10 * * *" script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js,tag=粉丝互动
+===============Surge=================
+粉丝互动 = type=cron,cronexp="3 10 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js
+============小火箭=========
+粉丝互动 = type=cron,script-path=https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_fanslove.js, cronexpr="3 10 * * *", timeout=3600, enable=true
 */
-const $ = new Env('店铺签到');
+
+
+const $ = new Env('跑路·······');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -16,19 +32,6 @@ let vender=''
 let num=0
 let shopname=''
 const token=[
-  
-  
-'06CF73678B977CE46650BA71CCA26579',
-'186C2D0724175A1DB1345513AF14908E',
-'2828E84587A833065809BBD91500D7B8',
-'4D03AD91B666A22112A8907AE843A2AC',
-'664DEF5CB940A549CC83FFE0E7B33E11',
-'881C1110754A4604CAAA17A3863FA1D2',
-'9F294960EDAB5B050A11F39EEEC10813',
-'E1447D82C73BC0EBCF431EF6BE8E3028',
-'EB1B18EF4CE3D6949A2A494C30EFB808',
-'ED0484B6E558412049454D0B4D56134F',
-
  "1A5BE7E4CFC35C680AE3960B48FE0851",//7天50豆5.14 5000份7天5元红包 200份5.14
  "B098DF6C17F03C352F1C1B317867699A",//7天66京豆 100份5.14
  "EB1B18EF4CE3D6949A2A494C30EFB808",//每天5/5天50豆 100份5.14
@@ -40,7 +43,6 @@ const token=[
  "1145B88683B3CD8BDA4FE73C80A6A59F",//7天100豆 100份5.15
  "DAA6B51C25AE4AFB3808144C0BC5C2D1",//7天100豆5.17
  "160FD7FBAC172C8E486C1C5AFFA3F546",//10天100京豆 100份5.11
-
 ]
 //IOS等用户直接用NobyDa的jd cookie
 
@@ -83,7 +85,7 @@ if ($.isNode()) {
         continue
       }
       await dpqd()
-      if(i  <1 ) {await showMsg()}
+      await showMsg()
     }
   }
 })()
@@ -192,7 +194,7 @@ function getActivityInfo(token,venderId) {
         "accept-encoding": "gzip, deflate",
         "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "cookie": cookie,
-         "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16178634353215523301&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_2009753434_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
+        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16105853541009626903&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1001280291_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
         "User-Agent": `Mozilla/5.0 (Linux; U; Android 10; zh-cn; MI 8 Build/QKQ1.190828.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3945.147 Mobile Safari/537.36 XiaoMi/MiuiBrowser/13.5.40`
       }
     }
@@ -235,7 +237,7 @@ function signCollectGift(token,venderId,activitytemp) {
         "accept-encoding": "gzip, deflate",
         "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "cookie": cookie,
-        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16178634353215523301&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_2009753434_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
+        "referer": `https://h5.m.jd.com/babelDiy/Zeus/2PAAf74aG3D61qvfKUM5dxUssJQ9/index.html?token=${token}&sceneval=2&jxsid=16105853541009626903&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1001280291_&utm_term=fa3f8f38c56f44e2b4bfc2f37bce9713`,
         "User-Agent": `Mozilla/5.0 (Linux; U; Android 10; zh-cn; MI 8 Build/QKQ1.190828.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/79.0.3945.147 Mobile Safari/537.36 XiaoMi/MiuiBrowser/13.5.40`
       }
     }
@@ -325,7 +327,7 @@ function TotalBean() {
               $.isLogin = false; //cookie过期
               return
             }
-            $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
+            $.nickName = data['base'].nickname;
           } else {
             console.log(`京东服务器返回空数据`)
           }
