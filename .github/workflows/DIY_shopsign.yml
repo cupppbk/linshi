@@ -27,7 +27,7 @@ jobs:
           npm install
       - name: '运行 【店铺签到】'
         run: |
-          curl https://github.com/cupppbk/linshi/blob/master/DIY_shopsign.js -DIY_shopsign.js
+          curl https://github.com/cupppbk/linshi/blob/master/DIY_shopsign.js
           node jd_dpqd.js
           
         env:
